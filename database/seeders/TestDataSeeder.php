@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class TestDataSeeder extends Seeder
 {
@@ -15,7 +15,17 @@ class TestDataSeeder extends Seeder
         $this->call([
             PermissionSeeder::class,
             RoleSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            GradeLevelSeeder::class,
+            SectionSeeder::class,
+            StudentSeeder::class,
+            DivisionSeeder::class,
+            TeamSeeder::class,
+            EventSeeder::class,
+            CategorySeeder::class,
+            LocationSeeder::class,
+            FacilitatorSeeder::class,
+            PointSeeder::class,
         ]);
     }
 }
