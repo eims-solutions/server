@@ -19,13 +19,13 @@ class AuthController extends Controller
             return response()->json(['token' => $token->plainTextToken], Response::HTTP_OK);
         }
 
-        return response()->json(['message' => 'Invalid credentialism'], Response::HTTP_UNAUTHORIZED);
+        return response()->json(['message' => 'Invalid credentials'], Response::HTTP_UNAUTHORIZED);
     }
 
     public function logout(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json(['message' => 'Logged out successfully o7'], Response::HTTP_OK);
+        return response()->json(['message' => 'Logged out successfully'], Response::HTTP_OK);
     }
 }
