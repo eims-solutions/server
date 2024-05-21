@@ -3,10 +3,9 @@
 namespace Database\Seeders;
 
 use App\Enums\PermissionEnum;
+use App\Enums\RoleEnum;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Spatie\Permission\Contracts\Permission;
 
 class RoleSeeder extends Seeder
 {
@@ -15,17 +14,17 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = Role::create(['name' => 'Admin']);
+        $admin = Role::create(['name' => RoleEnum::ADMIN->value]);
         $admin->syncPermissions(PermissionEnum::toArray());
 
-        $levelOneOfficer = Role::create(['name' => 'Level One Officer']);
+        $levelOneOfficer = Role::create(['name' => RoleEnum::LEVEL_ONE_OFFICER->value]);
         $levelOneOfficer->syncPermissions(PermissionEnum::getManagerRolePermissions());
 
-        $levelTwoOfficer = Role::create(['name' => 'Level Two Officer']);
+        $levelTwoOfficer = Role::create(['name' => RoleEnum::LEVEL_TWO_OFFICER->value]);
 
-        $levelThreeOfficer = Role::create(['name' => 'Level Three Officer']);
+        $levelThreeOfficer = Role::create(['name' => RoleEnum::LEVEL_THREE_OFFICER->value]);
 
-        $student = Role::create(['name' => 'Student']);
+        $student = Role::create(['name' => RoleEnum::STUDENT->value]);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
             ]);
 
-        $adminUser->assignRole('admin');
+        $adminUser->assignRole(RoleEnum::ADMIN->value);
 
         $user1 = User::query()
             ->firstOrCreate([
@@ -45,7 +46,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
             ]);
 
-        $user1->assignRole('user-1');
+        $user1->assignRole(RoleEnum::LEVEL_ONE_OFFICER->value);
 
         $user2 = User::query()
             ->firstOrCreate([
@@ -61,7 +62,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
             ]);
 
-        $user2->assignRole('user-2');
+        $user2->assignRole(RoleEnum::LEVEL_TWO_OFFICER->value);
 
         $user3 = User::query()
             ->firstOrCreate([
@@ -77,7 +78,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
             ]);
 
-        $user3->assignRole('user-3');
+        $user3->assignRole(RoleEnum::LEVEL_THREE_OFFICER->value);
 
         // DB::table('users')->insert([
         //     'name' => "admin",
