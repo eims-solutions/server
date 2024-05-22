@@ -12,6 +12,6 @@ class UserService
         return User::query()
             ->with(['roles'])
             ->latest()
-            ->paginate(2);
+            ->paginate(20);
     }
 }
