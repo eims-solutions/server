@@ -4,24 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Enums\PermissionEnum;
 use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Services\UserService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+    public function __construct(protected UserService $userService)
+    {
+        //
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(): JsonResponse
     {
-        // $this->authorize('users.read', User::class);
-        $user = User::all();
+        $this->authorize(PermissionEnum::CAN_READ_USERS->value, User::class);
+        $user = $this->userService->list();
 
-        return response()->json([
-            'data' => $user,
-        ], Response::HTTP_OK);
+        return UserResource::collection($user)
+            ->response();
     }
 
     /**
