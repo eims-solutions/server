@@ -7,11 +7,11 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserService
 {
-    public function list(): LengthAwarePaginator
+    public function list(int $perPage = 20): LengthAwarePaginator
     {
         return User::query()
             ->with(['roles'])
             ->latest()
-            ->paginate(20);
+            ->paginate($perPage);
     }
 }
