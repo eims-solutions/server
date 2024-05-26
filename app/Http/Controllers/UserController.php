@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PermissionEnum;
+use App\Http\Requests\GetUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -20,10 +21,10 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(GetUserRequest $request): JsonResponse
     {
         $this->authorize(PermissionEnum::CAN_READ_USERS->value, User::class);
-        $user = $this->userService->list();
+        $user = $this->userService->list($request->per_page ?? 20);
 
         return UserResource::collection($user)
             ->response();
