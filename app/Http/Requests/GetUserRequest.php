@@ -22,7 +22,10 @@ class GetUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'per_page' => 'integer',
+            'per_page' => [
+                'integer',
+                'nullable'
+            ],
         ];
     }
 }
